@@ -17,3 +17,16 @@ class Music(models.Model):
 
     def __str__(self):
         return self.title
+
+class Programador(models.Model):
+
+    class Meta:
+
+        db_table = 'programador'
+
+    nome = models.CharField(max_length=200)
+    data_nascimento = models.DateField()
+    liguagem_atualmente = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nome
