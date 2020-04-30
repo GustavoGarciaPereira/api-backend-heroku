@@ -1,2 +1,2 @@
 # api-backend-heroku
-api ospedada no heroku
+api hospedada no heroku
