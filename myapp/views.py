@@ -41,14 +41,13 @@ class ProgramadorView(viewsets.ModelViewSet):
     def get_queryset(request):
         nome = request.request.query_params.get("nome")
         liguagem_atualmente = request.request.query_params.get("liguagem_atualmente")
-        
         if nome:
             programador = Programador.objects.filter(nome__icontains=nome)
             return programador
         elif liguagem_atualmente:
             programador = Programador.objects.filter(liguagem_atualmente__icontains=liguagem_atualmente)
             return programador
-            
+
         programador = Programador.objects.filter()
         return programador 
 
