@@ -38,14 +38,12 @@ class ProgramadorView(viewsets.ModelViewSet):
     queryset = Programador.objects.all()
     serializer_class = ProgramadorSerializer
 
-    def get_queryset(request):
-        nome = request.request.query_params.get("nome")
-        liguagem_atualmente = request.request.query_params.get("liguagem_atualmente")
-        if nome:
-            programador = Programador.objects.filter(nome__icontains=nome)
-            return programador
-        elif liguagem_atualmente:
-            programador = Programador.objects.filter(liguagem_atualmente__icontains=liguagem_atualmente)
+    def get_queryset(self):
+        nome = self.request.query_params.get('nome',None)
+        liguagem_atualmente = self.request.query_params.get('liguagem_atualmente',None)
+
+        if nome or liguagem_atualmente:
+            programador = Programador.objects.filter(nome__icontains=nome,liguagem_atualmente__icontains=liguagem_atualmente)
             return programador
 
         programador = Programador.objects.filter()
